@@ -1,4 +1,4 @@
-export const HOST = `http://localhost:5000`;
+export const HOST = `https://team3-backend.vercel.app`;
 
 export const SEND_SIGNUP_OTP = `${HOST}/user/sendSignUpOtp`;
 export const SEND_FORGET_OTP = `${HOST}/user/sendForgetOtp`;
