@@ -3,7 +3,7 @@ Team 3 Project
 Installation
 Clone the Repository
 
-    git clone https://github.com/a2istogether/Project-1
+    git clone https://github.com/Ritik-The-Dev/Team-3-Underrated-Coder
 
 Client Installation
 

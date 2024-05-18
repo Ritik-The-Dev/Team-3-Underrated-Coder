@@ -125,7 +125,7 @@ export const sendForgetOtp = async (req, res) => {
 
     try {
       await transporter.sendMail({
-        from: "Team 3 Live Project <your-email@example.com>",
+        from: "Team 3 Live Project",
         to: email,
         subject: "Email Authentication",
         html: `
