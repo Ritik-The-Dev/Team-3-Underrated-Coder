@@ -5,8 +5,7 @@ import axios from "axios";
 import { LOGIN } from "../Api";
 import { useSetRecoilState } from "recoil";
 import userInfo from "../Recoil/userState";
-import { IoMdCloseCircle } from "react-icons/io";
-import { Audio } from "react-loader-spinner";
+import Loding from "./Loding";
 
 const Login = () => {
   const setUserInfo = useSetRecoilState(userInfo);
@@ -43,14 +42,11 @@ const Login = () => {
 
   return (
     <>
-      <div className="auth-container flex justify-center items-center bg-gray-100">
+      <div className="h-screen flex justify-center items-center">
         <div className="p-10 lg:min-w-[30%] md:min-w-[50%] min-w-[90%] bg-white rounded-lg shadow-md w-full max-w-md">
           <div className="flex items-center justify-between">
             <h2 className="font-bold text-2xl mb-4">Login</h2>
-            <IoMdCloseCircle
-              onClick={() => navigate("/")}
-              className="text-4xl cursor-pointer text-gray-400 hover:text-gray-500"
-            />
+            
           </div>
           <form onSubmit={formSubmit}>
             <div className="form-group mb-4">
@@ -64,7 +60,6 @@ const Login = () => {
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
             </div>
             <div className="form-group mb-4">
@@ -81,9 +76,8 @@ const Login = () => {
                 name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
               />
-              <Link to={"/forget-password"} className="text-blue-500">
+              <Link to={"/forget-password"} className="text-[#5cb85c]">
                 Forget Password?
               </Link>
             </div>
@@ -93,24 +87,20 @@ const Login = () => {
             >
               Login
             </button>
+            <div class="flex items-center ">
+              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
+              <div class="px-3 text-[#5cb85c] font-bold text-sm md:text-lg">OR</div>
+              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
+            </div>
+            <Link to={"/signup"}>
+              <button className=" w-full text-[#5cb85c] outline text-sm md:text-xl outline-[#5cb85c] py-1 rounded hover:bg-[#5cb85c] hover:text-white transition-all ease-in duration-800">
+                Create an account
+              </button>
+            </Link>
           </form>
         </div>
       </div>
-      {loading && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-transparent flex items-center justify-center rounded shadow-md w-full max-w-md">
-            <Audio
-              height="80"
-              width="80"
-              radius="9"
-              color="green"
-              ariaLabel="loading"
-              wrapperStyle
-              wrapperClass
-            />
-          </div>
-        </div>
-      )}
+      {loading && <Loding/>}
     </>
   );
 };

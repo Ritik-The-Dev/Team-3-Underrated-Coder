@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { IoMdCloseCircle } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { FORGET_PASS, SEND_FORGET_OTP } from "../Api";
-import { Audio } from "react-loader-spinner";
 import axios from 'axios'
 import { toast } from "react-toastify";
+import Loading from "./Loding";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -45,6 +44,12 @@ const Login = () => {
         setLoading(false);
         return toast.error("OTP is Required");
       }
+      if (password.length < 5) {
+        setLoading(false);
+        setPassword('');
+        setConfirmPassword('');
+        return toast.error("Password must be minimum 5 characters");
+      }
       if(confirmpassword !== password ){
         setLoading(false);
         return toast.error("Both Password do not Match");
@@ -69,14 +74,11 @@ const Login = () => {
 
   return (
     <>
-      <div className="auth-container flex justify-center items-center bg-gray-100">
+      <div className="h-screen flex justify-center items-center bg-gray-100">
         <div className="p-10 lg:min-w-[30%] md:min-w-[50%] min-w-[90%] bg-white rounded-lg shadow-md w-full max-w-md">
           <div className="flex items-center justify-between">
             <h2 className="font-bold text-2xl mb-4">Password Recovery</h2>
-            <IoMdCloseCircle
-              onClick={() => navigate("/")}
-              className="text-4xl cursor-pointer text-gray-400 hover:text-gray-500"
-            />
+        
           </div>
           <form onSubmit={formSubmit}>
             <div className="form-group">
@@ -90,7 +92,7 @@ const Login = () => {
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
+  
               />
             </div>
             <button type="submit" className="submit-button">
@@ -104,10 +106,7 @@ const Login = () => {
           <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
             <div className="flex items-center justify-between">
               <h2 className="font-bold text-2xl mb-4">Confirm otp</h2>
-              <IoMdCloseCircle
-                onClick={() => setOtpSent(false)}
-                className="text-3xl text-gray-400 cursor-pointer hover:text-gray-500"
-              />
+        
             </div>
             <form onSubmit={otpSubmit}>
               <div className="form-group mb-4">
@@ -121,7 +120,7 @@ const Login = () => {
                   name="otp"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
-                  required
+  
                 />
                 <label
                   htmlFor="passwordInput"
@@ -136,7 +135,7 @@ const Login = () => {
                   name="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  required
+  
                 />
                 <label
                   htmlFor="confirmPass"
@@ -151,7 +150,6 @@ const Login = () => {
                   name="Confirm Password"
                   value={confirmpassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
                 />
               </div>
               <button
@@ -165,19 +163,7 @@ const Login = () => {
         </div>
       )}
       {loading && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-transparent flex items-center justify-center rounded shadow-md w-full max-w-md">
-            <Audio
-              height="80"
-              width="80"
-              radius="9"
-              color="green"
-              ariaLabel="loading"
-              wrapperStyle
-              wrapperClass
-            />
-          </div>
-        </div>
+        <Loading/>
       )}
     </>
   );

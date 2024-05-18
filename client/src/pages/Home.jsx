@@ -6,7 +6,6 @@ import { GET_USER_DETAILS } from "../Api";
 
 const Home = () => {
   const [userData, setUserData] = useRecoilState(userInfo);
-
   const getUserData = async () => {
     try {
       const token = localStorage.getItem("token");
