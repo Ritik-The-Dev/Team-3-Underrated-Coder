@@ -4,6 +4,7 @@ import userInfo from "../Recoil/userState";
 import axios from "axios";
 import { GET_USER_DETAILS } from "../Api";
 import { Audio } from "react-loader-spinner";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [userData, setUserData] = useRecoilState(userInfo);
@@ -28,6 +29,14 @@ const Home = () => {
         return;
       }
     } catch (err) {
+      if (
+        err?.response?.data?.message ||
+        err?.data?.message ||
+        err.message === "Invalid or expired token"
+      ) {
+        localStorage.removeItem("token");
+        toast.error("Your Session have been Expired Pls Login Again");
+      }
       setLoading(false);
       console.log(err);
     }

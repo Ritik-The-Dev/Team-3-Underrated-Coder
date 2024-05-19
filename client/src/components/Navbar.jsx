@@ -7,6 +7,7 @@ import userInfo from "../Recoil/userState";
 const Navbar = () => {
   const [userData,setUserData] = useRecoilState(userInfo)
   const [menuOpen, setMenuOpen] = useState(false);
+  const token = localStorage.getItem("token");
   const menuCLick = () => {
     setMenuOpen(!menuOpen);
   };
@@ -41,13 +42,10 @@ const Navbar = () => {
         </ul>
         <div className="button-div">
          {
-          userData ? (
-            <button onClick={handleLogout}>Logout</button>
+          token ? (
+            <Link to={'/login'} onClick={handleLogout}><button>Logout</button></Link>
           ) : (
-            <>
-            <Link to={'/signup'}><button>Sign Up</button></Link>
-            <Link to={'/login'}><button>Login</button></Link>
-            </>
+            ''
           ) 
          }
         </div>

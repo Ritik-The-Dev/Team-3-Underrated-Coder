@@ -21,7 +21,7 @@ const auth = async (req, res, next) => {
         next(); // Proceed to the next middleware or route handler
       } catch (error) {
         // Handle token verification errors
-        res.status(401).json({msg:'Not Authorized',error}); // Unauthorized status code
+        res.status(401).json({msg:'Invalid or expired token',error}); // Unauthorized status code
       }
     }
     // If no token is found in the authorization header
