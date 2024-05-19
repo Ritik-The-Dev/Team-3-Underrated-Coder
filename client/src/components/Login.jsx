@@ -47,6 +47,7 @@ const Login = () => {
           <div className="flex items-center justify-between">
             <h2 className="font-bold text-2xl mb-4">Login</h2>
             
+            
           </div>
           <form onSubmit={formSubmit}>
             <div className="form-group mb-4">
@@ -87,6 +88,16 @@ const Login = () => {
             >
               Login
             </button>
+            <div class="flex items-center ">
+              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
+              <div class="px-3 text-[#5cb85c] font-bold text-sm md:text-lg">OR</div>
+              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
+            </div>
+            <Link to={"/signup"}>
+              <button className=" w-full text-[#5cb85c] outline text-sm md:text-xl outline-[#5cb85c] py-1 rounded hover:bg-[#5cb85c] hover:text-white transition-all ease-in duration-800">
+                Create an account
+              </button>
+            </Link>
             <div class="flex items-center ">
               <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
               <div class="px-3 text-[#5cb85c] font-bold text-sm md:text-lg">OR</div>

@@ -8,8 +8,11 @@ import { toast } from "react-toastify";
 
 const Home = () => {
   const [userData, setUserData] = useRecoilState(userInfo);
+<<<<<<< HEAD
+=======
   const [loading, setLoading] = useState(false);
 
+>>>>>>> 6544350a6e4782ebeafed8770bb3de92cae6fc05
   const getUserData = async () => {
     setLoading(true);
     try {

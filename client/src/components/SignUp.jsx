@@ -5,7 +5,6 @@ import axios from "axios";
 import { useSetRecoilState } from "recoil";
 import userInfo from "../Recoil/userState";
 import { toast } from "react-toastify";
-
 import Loading from './Loding'
 
 const SignUp = () => {
@@ -29,6 +28,28 @@ const SignUp = () => {
       if (!email || !password || !name) {
         setLoading(false);
         return toast.error("All Fields are Required");
+      }
+      if (name.length < 3) {
+        setLoading(false);
+        setName('');
+        return toast.error("Name must be minimum 3 letters");
+      }
+      if (mail !== 'gmail.com') {
+        setLoading(false);
+        setEmail('');
+        return toast.error("Provide only Google Mail Id");
+      }
+      if (password.length < 5) {
+        setLoading(false);
+        setPassword('');
+        setConfirmPassword('');
+        return toast.error("Password must be minimum 5 characters");
+      }
+      if (password !== confirmPassword) {
+        setLoading(false);
+        setPassword('');
+        setconfirmPassword('');
+        return toast.error("Both Passwords must be same");
       }
       if (name.length < 3) {
         setLoading(false);
@@ -97,7 +118,6 @@ const SignUp = () => {
         <div className="p-10 lg:min-w-[30%] md:min-w-[50%] min-w-[90%] bg-white rounded-lg shadow-md w-full max-w-md">
           <div className="flex items-center justify-between">
             <h2 className="font-bold text-2xl mb-4">Sign Up</h2>
-          
           </div>
           <br />
           <form onSubmit={formSubmit}>
@@ -112,7 +132,6 @@ const SignUp = () => {
                 name="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-          
               />
             </div>
             <div className="form-group">
@@ -126,7 +145,6 @@ const SignUp = () => {
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-            
               />
             </div>
             <div className="form-group">
@@ -153,12 +171,21 @@ const SignUp = () => {
                 name="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-
               />
             </div>
             <button type="submit" className="submit-button">
               Sign Up
             </button>
+            <div class="flex items-center ">
+              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
+              <div class="px-3 text-[#5cb85c] font-bold text-sm md:text-lg">OR</div>
+              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
+            </div>
+            <Link to={"/login"}>
+              <button className=" w-full text-[#5cb85c] outline text-sm md:text-lg outline-[#5cb85c] py-1 rounded hover:bg-[#5cb85c] hover:text-white transition-all ease-in duration-800">
+                I have already an account
+              </button>
+            </Link>
             <div class="flex items-center ">
               <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
               <div class="px-3 text-[#5cb85c] font-bold text-sm md:text-lg">OR</div>
@@ -177,7 +204,6 @@ const SignUp = () => {
           <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
             <div className="flex items-center justify-between">
               <h2 className="font-bold text-2xl mb-4">Confirm otp</h2>
-          
             </div>
             <form onSubmit={otpSubmit}>
               <div className="form-group mb-4">
@@ -191,7 +217,6 @@ const SignUp = () => {
                   name="otp"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
-
                 />
               </div>
               <button
@@ -204,9 +229,7 @@ const SignUp = () => {
           </div>
         </div>
       )}
-
       {loading && <Loading/>}
-
     </>
   );
 };
