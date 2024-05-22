@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FORGET_PASS, SEND_FORGET_OTP } from "../Api";
-import axios from 'axios'
+import axios from "axios";
 import { toast } from "react-toastify";
 import Loading from "./Loding";
 
@@ -46,11 +46,11 @@ const Login = () => {
       }
       if (password.length < 5) {
         setLoading(false);
-        setPassword('');
-        setConfirmPassword('');
+        setPassword("");
+        setConfirmPassword("");
         return toast.error("Password must be minimum 5 characters");
       }
-      if(confirmpassword !== password ){
+      if (confirmpassword !== password) {
         setLoading(false);
         return toast.error("Both Password do not Match");
       }
@@ -78,7 +78,6 @@ const Login = () => {
         <div className="p-10 lg:min-w-[30%] md:min-w-[50%] min-w-[90%] bg-white rounded-lg shadow-md w-full max-w-md">
           <div className="flex items-center justify-between">
             <h2 className="font-bold text-2xl mb-4">Password Recovery</h2>
-        
           </div>
           <form onSubmit={formSubmit}>
             <div className="form-group">
@@ -92,7 +91,6 @@ const Login = () => {
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-  
               />
             </div>
             <button type="submit" className="submit-button">
@@ -106,7 +104,6 @@ const Login = () => {
           <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
             <div className="flex items-center justify-between">
               <h2 className="font-bold text-2xl mb-4">Confirm otp</h2>
-        
             </div>
             <form onSubmit={otpSubmit}>
               <div className="form-group mb-4">
@@ -120,7 +117,6 @@ const Login = () => {
                   name="otp"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
-  
                 />
                 <label
                   htmlFor="passwordInput"
@@ -135,7 +131,6 @@ const Login = () => {
                   name="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-  
                 />
                 <label
                   htmlFor="confirmPass"
@@ -162,9 +157,13 @@ const Login = () => {
           </div>
         </div>
       )}
+<<<<<<< HEAD
       {loading && (
         <Loading/>
       )}
+=======
+      {loading && <Loading />}
+>>>>>>> 45a4c0333d79f2de57e8c370775b2a63a5da9194
     </>
   );
 };

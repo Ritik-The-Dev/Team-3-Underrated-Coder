@@ -3,8 +3,13 @@ import { useRecoilState } from "recoil";
 import userInfo from "../Recoil/userState";
 import axios from "axios";
 import { GET_USER_DETAILS } from "../Api";
+<<<<<<< HEAD
 import Loding from '../components/Loding';
 import BlogCard from '../components/BlogCard';
+=======
+import { Audio } from "react-loader-spinner";
+import { toast } from "react-toastify";
+>>>>>>> 45a4c0333d79f2de57e8c370775b2a63a5da9194
 
 const Home = () => {
   const [userData, setUserData] = useRecoilState(userInfo);
@@ -32,6 +37,14 @@ const Home = () => {
         return;
       }
     } catch (err) {
+      if (
+        err?.response?.data?.message ||
+        err?.data?.message ||
+        err.message === "Invalid or expired token"
+      ) {
+        localStorage.removeItem("token");
+        toast.error("Your Session have been Expired Pls Login Again");
+      }
       setLoading(false);
       console.log(err);
     }

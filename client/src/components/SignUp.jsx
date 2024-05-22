@@ -5,8 +5,12 @@ import axios from "axios";
 import { useSetRecoilState } from "recoil";
 import userInfo from "../Recoil/userState";
 import { toast } from "react-toastify";
+<<<<<<< HEAD
 
 import Loading from "./Loding";
+=======
+import Loading from './Loding'
+>>>>>>> 45a4c0333d79f2de57e8c370775b2a63a5da9194
 
 const SignUp = () => {
   const setUserInfo = useSetRecoilState(userInfo);
@@ -66,6 +70,28 @@ const SignUp = () => {
         setConfirmPassword("");
         return toast.error("Both Passwords must be same");
       }
+      if (name.length < 3) {
+        setLoading(false);
+        setName('');
+        return toast.error("Name must be minimum 3 letters");
+      }
+      if (mail !== 'gmail.com') {
+        setLoading(false);
+        setEmail('');
+        return toast.error("Provide only Google Mail Id");
+      }
+      if (password.length < 5) {
+        setLoading(false);
+        setPassword('');
+        setConfirmPassword('');
+        return toast.error("Password must be minimum 5 characters");
+      }
+      if (password !== confirmPassword) {
+        setLoading(false);
+        setPassword('');
+        setconfirmPassword('');
+        return toast.error("Both Passwords must be same");
+      }
       const { data } = await axios.post(SEND_SIGNUP_OTP, { email });
       if (data.success) {
         toast.success(data.message);
@@ -114,6 +140,7 @@ const SignUp = () => {
           </div>
           <br />
           <form onSubmit={formSubmit}>
+<<<<<<< HEAD
             <div className=" md:grid md:grid-cols-2 md:gap-2">
               <div className="form-group">
                 <label htmlFor="nameInput" className="inputLabel">
@@ -193,6 +220,59 @@ const SignUp = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
+=======
+            <div className="form-group">
+              <label htmlFor="nameInput" className="inputLabel">
+                Name
+              </label>
+              <input
+                className="inputField"
+                type="text"
+                id="nameInput"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="emailInput" className="inputLabel">
+                Email
+              </label>
+              <input
+                className="inputField"
+                type="email"
+                id="emailInput"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="passwordInput" className="inputLabel">
+                Password
+              </label>
+              <input
+                className="inputField"
+                type="password"
+                id="passwordInput"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="confirmPasswordInput" className="inputLabel">
+                Confirm Password
+              </label>
+              <input
+                className="inputField"
+                type="password"
+                id="confirmPasswordInput"
+                name="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+>>>>>>> 45a4c0333d79f2de57e8c370775b2a63a5da9194
             </div>
             <button type="submit" className="submit-button">
               Sign Up
@@ -202,6 +282,16 @@ const SignUp = () => {
               <div class="px-3 text-[#5cb85c] font-bold text-sm md:text-lg">
                 OR
               </div>
+              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
+            </div>
+            <Link to={"/login"}>
+              <button className=" w-full text-[#5cb85c] outline text-sm md:text-lg outline-[#5cb85c] py-1 rounded hover:bg-[#5cb85c] hover:text-white transition-all ease-in duration-800">
+                I have already an account
+              </button>
+            </Link>
+            <div class="flex items-center ">
+              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
+              <div class="px-3 text-[#5cb85c] font-bold text-sm md:text-lg">OR</div>
               <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
             </div>
             <Link to={"/login"}>
@@ -242,8 +332,12 @@ const SignUp = () => {
           </div>
         </div>
       )}
+<<<<<<< HEAD
 
       {loading && <Loading />}
+=======
+      {loading && <Loading/>}
+>>>>>>> 45a4c0333d79f2de57e8c370775b2a63a5da9194
     </>
   );
 };
