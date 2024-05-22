@@ -163,23 +163,7 @@ const Login = () => {
         </div>
       )}
       {loading && (
-<<<<<<< HEAD
         <Loading/>
-=======
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-transparent flex items-center justify-center">
-            <Audio
-              height="80"
-              width="80"
-              radius="9"
-              color="green"
-              ariaLabel="loading"
-              wrapperStyle
-              wrapperClass
-            />
-          </div>
-        </div>
->>>>>>> 6544350a6e4782ebeafed8770bb3de92cae6fc05
       )}
     </>
   );

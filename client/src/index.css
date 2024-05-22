@@ -16,12 +16,6 @@ nav{
     padding: 15px 15px;
     font-weight: 800;
     font-size: 18px;
-    background: rgba( 255, 255, 255, 0.45 );
-    backdrop-filter: blur( 16px );
-    -webkit-backdrop-filter: blur( 16px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    box-shadow: 0 2px 10px 0 rgba( 31, 38, 135, 0.2 );
 }
 .nav-links,.nav-links ul{
     display: flex;
@@ -39,24 +33,7 @@ nav{
       color: #5cb85c;
       text-decoration: underline;
 }
-.nav-links button{
-    padding: 10px 12px;
-    border: none;
-    outline: none;
-    color: white;
-    background-color: #5cb85c;
-    margin: 0 3px;
-    border-radius: 12px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 200ms;
-}
-.nav-links button:hover{
-    background-color: #4cae4c;
-    
-    box-shadow: 0 10px 15px -3px #5cb85c;
-}
+
 .menuIcon{
     display: none;
 }
@@ -65,7 +42,7 @@ nav{
       top: 0; 
       right: 10px;
       padding-top:5px ;
-      z-index: 999;
+      z-index: 10;
 }
 a{
     text-decoration: none;
@@ -81,6 +58,11 @@ a{
 }
 
 @media (max-width: 768px){
+    /* .glass-effect{
+        background: white;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        box-shadow: 0 2px 10px 0 rgba( 31, 38, 135, 0.2 );
+    } */
     .nav-links,.nav-links ul{
         flex-direction: column;
         
@@ -97,12 +79,6 @@ a{
         top: 60px; 
         right: 100%;
         padding: 20px;
-        background: rgba( 255, 255, 255, 0.7 );
-        backdrop-filter: blur( 19.5px );
-        -webkit-backdrop-filter: blur( 19.5px );
-        border-radius: 10px;
-        border: 1px solid rgba( 255, 255, 255, 0.18 );
-        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
         transition: all 200ms;
     }
     .nav-links li{

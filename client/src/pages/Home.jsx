@@ -3,15 +3,16 @@ import { useRecoilState } from "recoil";
 import userInfo from "../Recoil/userState";
 import axios from "axios";
 import { GET_USER_DETAILS } from "../Api";
-import { Audio } from "react-loader-spinner";
+import Loding from '../components/Loding';
+import BlogCard from '../components/BlogCard';
 
 const Home = () => {
   const [userData, setUserData] = useRecoilState(userInfo);
-<<<<<<< HEAD
-=======
   const [loading, setLoading] = useState(false);
+  const numbers = [1, 2, 3, 4, 5,1, 2, 3, 4, 5];
 
->>>>>>> 6544350a6e4782ebeafed8770bb3de92cae6fc05
+
+
   const getUserData = async () => {
     setLoading(true);
     try {
@@ -44,27 +45,18 @@ const Home = () => {
 
   return (
     <>
-      <div className="div-center">
-        <h1 className="text-4xl font-bold">
-          {userData
-            ? `Welcome ${userData.name} to Team 3 Project`
-            : "Login to Test"}
-        </h1>
-      </div>
-      {loading && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-transparent flex items-center justify-center">
-            <Audio
-              height="80"
-              width="80"
-              radius="9"
-              color="green"
-              ariaLabel="loading"
-              wrapperStyle
-              wrapperClass
-            />
+    <div className=' lg:w-[70vw] md:w-[90vw] py-5 w-[97vw] mx-auto'>
+      {
+        numbers.map((number,i) =>
+          <div key={i}>
+            <BlogCard/>
           </div>
-        </div>
+        )
+      }
+    </div>
+      
+      {loading && (
+        <Loding/>
       )}
     </>
   );

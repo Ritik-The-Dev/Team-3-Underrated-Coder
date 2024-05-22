@@ -51,7 +51,7 @@ const Login = () => {
           <form onSubmit={formSubmit}>
             <div className="form-group mb-4">
               <label htmlFor="emailInput" className="block text-gray-700 mb-2">
-                Email
+                Email or Mobile Number
               </label>
               <input
                 className="inputField w-full p-2 border border-gray-300 rounded"
@@ -87,10 +87,10 @@ const Login = () => {
             >
               Login
             </button>
-            <div class="flex items-center ">
-              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
-              <div class="px-3 text-[#5cb85c] font-bold text-sm md:text-lg">OR</div>
-              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
+            <div className="flex items-center ">
+              <div className="border-t border-1 border-[#5cb85c] flex-grow"></div>
+              <div className="px-3 text-[#5cb85c] font-bold text-sm md:text-lg">OR</div>
+              <div className="border-t border-1 border-[#5cb85c] flex-grow"></div>
             </div>
             <Link to={"/signup"}>
               <button className=" w-full text-[#5cb85c] outline text-sm md:text-xl outline-[#5cb85c] py-1 rounded hover:bg-[#5cb85c] hover:text-white transition-all ease-in duration-800">
@@ -100,25 +100,9 @@ const Login = () => {
           </form>
         </div>
       </div>
-<<<<<<< HEAD
+
       {loading && <Loding/>}
-=======
-      {loading && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-transparent flex items-center justify-center">
-            <Audio
-              height="80"
-              width="80"
-              radius="9"
-              color="green"
-              ariaLabel="loading"
-              wrapperStyle
-              wrapperClass
-            />
-          </div>
-        </div>
-      )}
->>>>>>> 6544350a6e4782ebeafed8770bb3de92cae6fc05
+
     </>
   );
 };
