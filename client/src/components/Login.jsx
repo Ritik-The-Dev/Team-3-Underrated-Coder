@@ -46,8 +46,6 @@ const Login = () => {
         <div className="p-10 lg:min-w-[30%] md:min-w-[50%] min-w-[90%] bg-white rounded-lg shadow-md w-full max-w-md">
           <div className="flex items-center justify-between">
             <h2 className="font-bold text-2xl mb-4">Login</h2>
-            
-            
           </div>
           <form onSubmit={formSubmit}>
             <div className="form-group mb-4">
