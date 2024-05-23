@@ -32,6 +32,7 @@ const Posts = () => {
     setTitle("");
     setDescription("");
     setKeywords("");
+    setImageUrl('');
     setLoading(false);
   };
 

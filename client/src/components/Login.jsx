@@ -96,16 +96,6 @@ const Login = () => {
                 Create an account
               </button>
             </Link>
-            <div class="flex items-center ">
-              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
-              <div class="px-3 text-[#5cb85c] font-bold text-sm md:text-lg">OR</div>
-              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
-            </div>
-            <Link to={"/signup"}>
-              <button className=" w-full text-[#5cb85c] outline text-sm md:text-xl outline-[#5cb85c] py-1 rounded hover:bg-[#5cb85c] hover:text-white transition-all ease-in duration-800">
-                Create an account
-              </button>
-            </Link>
           </form>
         </div>
       </div>

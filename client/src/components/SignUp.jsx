@@ -216,58 +216,7 @@ const SignUp = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
-            <div className="form-group">
-              <label htmlFor="nameInput" className="inputLabel">
-                Name
-              </label>
-              <input
-                className="inputField"
-                type="text"
-                id="nameInput"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="emailInput" className="inputLabel">
-                Email
-              </label>
-              <input
-                className="inputField"
-                type="email"
-                id="emailInput"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="passwordInput" className="inputLabel">
-                Password
-              </label>
-              <input
-                className="inputField"
-                type="password"
-                id="passwordInput"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="confirmPasswordInput" className="inputLabel">
-                Confirm Password
-              </label>
-              <input
-                className="inputField"
-                type="password"
-                id="confirmPasswordInput"
-                name="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
+              </div>
             <button type="submit" className="submit-button">
               Sign Up
             </button>
@@ -283,17 +232,7 @@ const SignUp = () => {
                 I have already an account
               </button>
             </Link>
-            <div class="flex items-center ">
-              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
-              <div class="px-3 text-[#5cb85c] font-bold text-sm md:text-lg">OR</div>
-              <div class="border-t border-1 border-[#5cb85c] flex-grow"></div>
-            </div>
-            <Link to={"/login"}>
-              <button className=" w-full text-[#5cb85c] outline text-sm md:text-lg outline-[#5cb85c] py-1 rounded hover:bg-[#5cb85c] hover:text-white transition-all ease-in duration-800">
-                I have already an account
-              </button>
-            </Link>
-          </div>
+          
           </form>
         </div>
       </div>
