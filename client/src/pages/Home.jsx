@@ -3,13 +3,10 @@ import { useRecoilState } from "recoil";
 import userInfo from "../Recoil/userState";
 import axios from "axios";
 import { GET_USER_DETAILS } from "../Api";
-<<<<<<< HEAD
 import Loding from '../components/Loding';
 import BlogCard from '../components/BlogCard';
-=======
 import { Audio } from "react-loader-spinner";
 import { toast } from "react-toastify";
->>>>>>> 45a4c0333d79f2de57e8c370775b2a63a5da9194
 
 const Home = () => {
   const [userData, setUserData] = useRecoilState(userInfo);
