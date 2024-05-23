@@ -6,7 +6,7 @@ import { useSetRecoilState } from "recoil";
 import userInfo from "../Recoil/userState";
 import { toast } from "react-toastify";
 import Loading from "./Loding";
-import Loading from './Loding'
+
 
 
 const SignUp = () => {
@@ -293,6 +293,7 @@ const SignUp = () => {
                 I have already an account
               </button>
             </Link>
+          </div>
           </form>
         </div>
       </div>
