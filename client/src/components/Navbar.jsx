@@ -32,6 +32,11 @@ const Navbar = () => {
     return toast.success("Logout Successfully");
   };
 
+  useEffect(()=>{
+    if(userData){
+      setImgUrl(userData.photo)
+    }
+  },[])
   return (
     <div className="bg-white rounded-lg sticky top-0 z-50 shadow-md">
       <nav>
@@ -76,7 +81,7 @@ const Navbar = () => {
         <div onClick={avatarClick} className="cursor-pointer pt-1  p-3">
           <div className=" flex justify-center items-center h-[40px] w-[40px] overflow-hidden shadow-md rounded-full">
             {imgUrl ? (
-              <img src={imgUrl} width={50} alt="profile" />
+              <img src={imgUrl} width={50} alt="profile" className=" object-cover" />
             ) : (
               <RxAvatar className="text-green-700 text-3xl" />
             )}

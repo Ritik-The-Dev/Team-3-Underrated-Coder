@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { SEND_SIGNUP_OTP, SIGNUP } from "../Api";
+import { SEND_SIGNUP_OTP, SIGNUP, IMAGE_UPLOAD } from "../Api";
 import axios from "axios";
 import { useSetRecoilState } from "recoil";
 import userInfo from "../Recoil/userState";
 import { toast } from "react-toastify";
 import Loading from "./Loding";
-
-
+import { IoMdCloseCircle } from "react-icons/io";
 
 const SignUp = () => {
   const setUserInfo = useSetRecoilState(userInfo);
@@ -16,16 +15,17 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
-  const [profileImage, setProfileImage] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
   const [mobileNumber, setMobileNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
+  const [imageLink, setImageLink] = useState(undefined);
   const navigate = useNavigate();
 
   const mail = email.split("@")[1];
 
   const selectProfileImg = (e) => {
-    setProfileImage(URL.createObjectURL(e.target.files[0]));
+    setProfileImage(e.target.files[0]);
   };
 
   const formSubmit = async (e) => {
@@ -34,7 +34,7 @@ const SignUp = () => {
       setLoading(true);
       if (!profileImage) {
         setLoading(false);
-        return toast.error("Select an Profile Image");
+        return toast.error("Select a Profile Image");
       }
       if (!email || !password || !name || !confirmPassword || !mobileNumber) {
         setLoading(false);
@@ -42,88 +42,76 @@ const SignUp = () => {
       }
       if (name.length < 3) {
         setLoading(false);
-        setName("");
         return toast.error("Name must be minimum 3 letters");
       }
       if (mobileNumber.length !== 10) {
         setLoading(false);
-        setMobileNumber("");
         return toast.error("Enter valid Mobile Number");
       }
       if (mail !== "gmail.com") {
         setLoading(false);
-        setEmail("");
         return toast.error("Provide only Google Mail Id");
       }
       if (password.length < 5) {
         setLoading(false);
-        setPassword("");
-        setConfirmPassword("");
         return toast.error("Password must be minimum 5 characters");
       }
       if (password !== confirmPassword) {
         setLoading(false);
-        setPassword("");
-        setConfirmPassword("");
-        return toast.error("Both Passwords must be same");
+        return toast.error("Both Passwords must be the same");
       }
-      if (name.length < 3) {
-        setLoading(false);
-        setName('');
-        return toast.error("Name must be minimum 3 letters");
+
+      const formData = new FormData();
+      formData.append("image", profileImage);
+      const { data: uploadData } = await axios.post(IMAGE_UPLOAD, formData);
+      if (uploadData.success) {
+        setImageLink(uploadData.fileUrl);
+        const { data: otpData } = await axios.post(SEND_SIGNUP_OTP, { email });
+        if (otpData.success) {
+          toast.success(otpData.message);
+          setOtpSent(true);
+        } else {
+          toast.error(otpData.message);
+        }
+      } else {
+        toast.error("Image Upload Failed");
       }
-      if (mail !== 'gmail.com') {
-        setLoading(false);
-        setEmail('');
-        return toast.error("Provide only Google Mail Id");
-      }
-      if (password.length < 5) {
-        setLoading(false);
-        setPassword('');
-        setConfirmPassword('');
-        return toast.error("Password must be minimum 5 characters");
-      }
-      if (password !== confirmPassword) {
-        setLoading(false);
-        setPassword('');
-        setconfirmPassword('');
-        return toast.error("Both Passwords must be same");
-      }
-      const { data } = await axios.post(SEND_SIGNUP_OTP, { email });
-      if (data.success) {
-        toast.success(data.message);
-        setOtpSent(true);
-        setLoading(false);
-      }
+      setLoading(false);
     } catch (error) {
-      toast.error(
-        error?.response?.data?.message || error?.data?.message || error.message
-      );
+      toast.error(error?.response?.data?.message || error.message);
       setLoading(false);
     }
   };
 
   const otpSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     try {
+      setLoading(true);
       if (!otp) {
         setLoading(false);
         return toast.error("OTP is Required");
       }
-      const { data } = await axios.post(SIGNUP, { name, email, password, otp });
+      const { data } = await axios.post(SIGNUP, {
+        name,
+        photo: imageLink,
+        email,
+        password,
+        number: mobileNumber,
+        otp,
+      });
       if (data.success) {
         toast.success(data.message);
+        setLoading(false);
         const user = data.result;
         setUserInfo(user);
         localStorage.setItem("token", data.token);
         navigate("/");
-        setLoading(false);
+      } else {
+        toast.error(data.message);
       }
+      setLoading(false);
     } catch (error) {
-      toast.error(
-        error?.response?.data?.message || error?.data?.message || error.message
-      );
+      toast.error(error?.response?.data?.message || error.message);
       setLoading(false);
     }
   };
@@ -176,20 +164,19 @@ const SignUp = () => {
                   value={mobileNumber}
                   onChange={(e) => setMobileNumber(e.target.value)}
                 />
-                
               </div>
               <div className="form-group">
-              <label htmlFor="profileImg" className="inputLabel">
+                <label htmlFor="profileImg" className="inputLabel">
                   Profile Photo
                 </label>
-                  <input
+                <input
                   onChange={selectProfileImg}
-                   id="profileImg"
-                    type="file"
-                    accept="image/*"
-                    className="inputField cursor-pointer text-sm"
-                  />
-                </div>
+                  id="profileImg"
+                  type="file"
+                  accept="image/*"
+                  className="inputField cursor-pointer text-sm"
+                />
+              </div>
               <div className="form-group">
                 <label htmlFor="passwordInput" className="inputLabel">
                   Password
@@ -216,7 +203,7 @@ const SignUp = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
-              </div>
+            </div>
             <button type="submit" className="submit-button">
               Sign Up
             </button>
@@ -232,7 +219,6 @@ const SignUp = () => {
                 I have already an account
               </button>
             </Link>
-          
           </form>
         </div>
       </div>
@@ -241,6 +227,10 @@ const SignUp = () => {
           <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
             <div className="flex items-center justify-between">
               <h2 className="font-bold text-2xl mb-4">Confirm otp</h2>
+              <IoMdCloseCircle
+                className="text-2xl"
+                onClick={() => setOtpSent(false)}
+              />
             </div>
             <form onSubmit={otpSubmit}>
               <div className="form-group mb-4">
@@ -268,7 +258,6 @@ const SignUp = () => {
       )}
 
       {loading && <Loading />}
-
     </>
   );
 };
