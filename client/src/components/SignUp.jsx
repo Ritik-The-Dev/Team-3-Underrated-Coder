@@ -5,12 +5,9 @@ import axios from "axios";
 import { useSetRecoilState } from "recoil";
 import userInfo from "../Recoil/userState";
 import { toast } from "react-toastify";
-<<<<<<< HEAD
-
 import Loading from "./Loding";
-=======
 import Loading from './Loding'
->>>>>>> 45a4c0333d79f2de57e8c370775b2a63a5da9194
+
 
 const SignUp = () => {
   const setUserInfo = useSetRecoilState(userInfo);
@@ -140,7 +137,6 @@ const SignUp = () => {
           </div>
           <br />
           <form onSubmit={formSubmit}>
-<<<<<<< HEAD
             <div className=" md:grid md:grid-cols-2 md:gap-2">
               <div className="form-group">
                 <label htmlFor="nameInput" className="inputLabel">
@@ -220,7 +216,6 @@ const SignUp = () => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
-=======
             <div className="form-group">
               <label htmlFor="nameInput" className="inputLabel">
                 Name
@@ -272,7 +267,6 @@ const SignUp = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
->>>>>>> 45a4c0333d79f2de57e8c370775b2a63a5da9194
             </div>
             <button type="submit" className="submit-button">
               Sign Up
@@ -332,12 +326,9 @@ const SignUp = () => {
           </div>
         </div>
       )}
-<<<<<<< HEAD
 
       {loading && <Loading />}
-=======
-      {loading && <Loading/>}
->>>>>>> 45a4c0333d79f2de57e8c370775b2a63a5da9194
+
     </>
   );
 };
