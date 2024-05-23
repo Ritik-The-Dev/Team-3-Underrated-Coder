@@ -63,11 +63,15 @@ export const signup = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { emailOrPhone, password } = req.body;
 
   try {
-    // Find user by email
-    const existingUser = await User.findOne({ email });
+    // Determine if the input is an email or a phone number
+    const isEmail = emailOrPhone.includes("@");
+    const query = isEmail ? { email: emailOrPhone } : { contactNumber: emailOrPhone };
+
+    // Find user by email or phone number
+    const existingUser = await User.findOne(query);
     if (!existingUser) {
       return res.status(404).json({ message: "User doesn't exist." });
     }

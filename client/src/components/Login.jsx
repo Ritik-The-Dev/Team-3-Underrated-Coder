@@ -23,7 +23,7 @@ const Login = () => {
         setLoading(false);
         return toast.error("All Fields are Required");
       }
-      const { data } = await axios.post(LOGIN, { email, password });
+      const { data } = await axios.post(LOGIN, { emailOrPhone:email, password });
       if (data.success) {
         toast.success(data.message);
         const user = data.result;
@@ -54,7 +54,7 @@ const Login = () => {
               </label>
               <input
                 className="inputField w-full p-2 border border-gray-300 rounded"
-                type="email"
+                type="text"
                 id="emailInput"
                 name="email"
                 value={email}
