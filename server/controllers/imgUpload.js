@@ -49,7 +49,7 @@ export const uploadImageController = async (req, res) => {
     // Set path where to save the file
     const fileExtension = path.extname(file.name).toLowerCase();
     const fileName = `${Date.now()}${fileExtension}`;
-    const filePath = path.join(__dirname, "../uploads/images", fileName);
+    const filePath = path.join(__dirname, "../images", fileName);
 
     // Ensure the directory exists
     const dir = path.dirname(filePath);
@@ -60,10 +60,10 @@ export const uploadImageController = async (req, res) => {
     // Move the file to the desired location
     await file.mv(filePath);
 
-    // Construct the file URL (assuming the file is served statically from 'uploads/images')
+    // Construct the file URL (assuming the file is served statically from 'images')
     const fileUrl = `${req.protocol}://${req.get(
       "host"
-    )}/uploads/images/${fileName}`;
+    )}/images/${fileName}`;
 
     res.status(200).json({
       success: true,

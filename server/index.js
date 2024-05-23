@@ -26,7 +26,7 @@ app.use(
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 // Serve static files
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use(cors());
 app.use("/user", userRoutes);
