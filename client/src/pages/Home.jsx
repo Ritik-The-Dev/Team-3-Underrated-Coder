@@ -41,6 +41,8 @@ const Home = () => {
           setUserData(data.userdata);
         }
       } else {
+        localStorage.removeItem('token')
+        setUserData(undefined)
         setLoading(false);
         return;
       }
