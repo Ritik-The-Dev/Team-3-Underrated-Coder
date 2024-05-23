@@ -157,13 +157,10 @@ const Login = () => {
           </div>
         </div>
       )}
-<<<<<<< HEAD
       {loading && (
         <Loading/>
       )}
-=======
       {loading && <Loading />}
->>>>>>> 45a4c0333d79f2de57e8c370775b2a63a5da9194
     </>
   );
 };
