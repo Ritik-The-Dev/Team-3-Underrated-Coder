@@ -1,4 +1,4 @@
-export const HOST = `http://localhost:5000`;
+export const HOST = `https://team-3-underrated-coder.onrender.com`;
 
 export const SEND_SIGNUP_OTP = `${HOST}/user/sendSignUpOtp`;
 export const SEND_FORGET_OTP = `${HOST}/user/sendForgetOtp`;
