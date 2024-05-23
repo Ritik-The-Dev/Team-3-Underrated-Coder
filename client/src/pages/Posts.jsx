@@ -39,7 +39,7 @@ const Posts = () => {
   return (
     <>
       <div className="w-[100vw] md:w-[80vw] h-[90vh] my-auto mx-auto flex flex-col lg:flex-row justify-center items-center">
-        <div className=" w-[100%] lg:w-[70%] relative h-[80%] skeleton">
+        <div className=" w-[100%] lg:w-[70%] relative rounded-none h-[80%] skeleton">
         <input
                 type="file"
                 id="selectBlogImg"
@@ -66,7 +66,7 @@ const Posts = () => {
           </>
           )}
         </div>
-        <div className="w-full h-[80%] pt-12 pb-5 px-11 bg-green-200">
+        <div className="w-full lg:h-[80%] h-[100%] pt-12 pb-5 px-11 bg-green-200">
           <form onSubmit={blogSubmit}>
             <div className="form-group">
               <label htmlFor="titleInput" className="inputLabel">

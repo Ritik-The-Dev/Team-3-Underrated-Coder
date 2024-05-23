@@ -5,7 +5,6 @@ import axios from "axios";
 import { GET_USER_DETAILS } from "../Api";
 import Loding from '../components/Loding';
 import BlogCard from '../components/BlogCard';
-import { Audio } from "react-loader-spinner";
 import { toast } from "react-toastify";
 
 const Home = () => {
@@ -53,10 +52,10 @@ const Home = () => {
 
   return (
     <>
-    <div className=' lg:w-[70vw] md:w-[90vw] py-5 w-[97vw] mx-auto'>
+    <div className=' lg:w-[60vw] md:w-[90vw] py-5 w-[97vw] mx-auto'>
       {
         numbers.map((number,i) =>
-          <div key={i}>
+          <div key={i} className="md:mt-8">
             <BlogCard/>
           </div>
         )
