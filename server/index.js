@@ -7,6 +7,7 @@ import blogRoutes from "./routes/blogs.js";
 import connectDB from "./connectMongoDb.js";
 import fileUpload from "express-fileupload";
 import path from "path";
+import { cloudinaryConnect } from "./cloudinary.js";
 import { fileURLToPath } from "url";
 
 dotenv.config();
@@ -18,7 +19,7 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(
   fileUpload({
-    useTempFiles: false,
+    useTempFiles: true,
   })
 );
 
@@ -31,6 +32,8 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(cors());
 app.use("/user", userRoutes);
 app.use("/blog", blogRoutes);
+
+cloudinaryConnect();
 
 const PORT = process.env.PORT || 5000;
 

@@ -1,6 +1,5 @@
-import path from "path";
-import fs from "fs";
-import { fileURLToPath } from "url";
+import cloudinary from "cloudinary";
+const cloudinaryInstance = cloudinary.v2;
 
 export const uploadImageController = async (req, res) => {
   try {
@@ -42,33 +41,14 @@ export const uploadImageController = async (req, res) => {
       });
     }
 
-    // Resolve __dirname using fileURLToPath and import.meta.url
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-
-    // Set path where to save the file
-    const fileExtension = path.extname(file.name).toLowerCase();
-    const fileName = `${Date.now()}${fileExtension}`;
-    const filePath = path.join(__dirname, "../images", fileName);
-
-    // Ensure the directory exists
-    const dir = path.dirname(filePath);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-
-    // Move the file to the desired location
-    await file.mv(filePath);
-
-    // Construct the file URL (assuming the file is served statically from 'images')
-    const fileUrl = `${req.protocol}://${req.get(
-      "host"
-    )}/images/${fileName}`;
+    const result = await cloudinaryInstance.uploader.upload(file.tempFilePath, {
+      folder: "user-project",
+    });
 
     res.status(200).json({
       success: true,
       message: "Image Uploaded Successfully",
-      fileUrl: fileUrl,
+      fileUrl: result.secure_url,
     });
   } catch (err) {
     return res.status(500).json({
